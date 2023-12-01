@@ -1,0 +1,5 @@
+first = input("First: ")
+second = input("second: ")
+#sum = int(first) + int(second)
+sum = float(first) + float(second)
+print(sum)

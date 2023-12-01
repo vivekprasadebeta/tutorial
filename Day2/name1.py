@@ -1,0 +1,10 @@
+import re
+name = input("What is your name? ")
+print(name)
+Aadress  = input("What is your address ?")
+print(Aadress)
+percentage = input("What is your percentage ? ")
+print(percentage)
+highest =  input("What is your highest qualification ? ")
+print(percentage)
+str(name)
