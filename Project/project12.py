@@ -7,7 +7,12 @@ def sanitize_data(df):
     df = df[df['Student Name'].str.isalpha()]
     df = df[df['Class'].isin(['12th', '10th'])]
     df = df[df['Stream'].isin(['Science', 'Commerce'])]
-    df = df[df['Percentage'] ]#apply(lambda x: isinstance(x, float))]
+   # df = df[df['Percentage'] ]#apply(lambda x: isinstance(x, float))]
+   # df = df[df['Percentage'].apply(lambda x: isinstance(x, float))]
+    df['Percentage'] = pd.to_numeric(df['Percentage'], errors='coerce')  # Convert 'Percentage' to numeric
+
+    # Drop rows with NaN in 'Percentage'
+    df = df.dropna(subset=['Percentage'])
 
     # Assign Grades based on Percentage
     def assign_grade(percentage):
