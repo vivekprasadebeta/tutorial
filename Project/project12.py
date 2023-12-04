@@ -1,5 +1,5 @@
 import pandas as pd
-
+import re
 
 def sanitize_data(df):
     # Remove rows with incorrect data
@@ -35,10 +35,27 @@ def main():
     data = []
     while True:
         student_name = input("Enter Student Name: ")
+        name1 = str(student_name)
+        print(name1)
+        name_pattern = r"^[a-zA-Z]+$"
+        if re.match(name_pattern, name1):
+            print("Yes ")
+        else:
+            print("No match")
+
         class_level = input("Enter Class (10th or 12th): ")
         stream = input("Enter Stream (Science or Commerce): ")
         try:
             percentage = float(input("Enter Percentage: "))
+            percentage1 = float(percentage)
+            print(percentage1)
+            percentage_pattern = r"^[0-9][0-9,.]+$"
+
+            if re.match(percentage_pattern, percentage):
+                print("Yes Percentage")
+            else:
+                print("Please enter valid percentage")
+
         except ValueError:
             print("Please enter a valid percentage!")
             continue
@@ -63,4 +80,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-#
