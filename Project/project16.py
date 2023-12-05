@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import sys
 
 def sanitize_data(df):
     # Remove rows with incorrect data
@@ -73,10 +74,27 @@ def main():
     # Sanitize and process data
     sanitized_data = sanitize_data(df)
 
-    # Writing to CSV
-    sanitized_data.to_csv('result.csv', index=False)
-    print("Output CSV file generated successfully!")
+    def main(file_path):
+        try:
+            df = pd.read_csv(file_path)  # Read the CSV file
+        except FileNotFoundError:
+            print(f"File {file_path} not found.")
+            return
 
+        print("Columns in the Input DataFrame:")
+        print(df.columns)  # Print columns from the DataFrame
 
-if __name__ == "__main__":
-    main()
+        # Sanitize and process data
+        sanitized_data = sanitize_data(df)
+
+        # Writing to CSV
+        sanitized_data.to_csv('result.csv', index=False)
+        print("Output CSV file generated successfully!")
+
+    if __name__ == "__main__":
+        if len(sys.argv) != 2:
+            print("Usage: python script_name.py <input_csv_file_path>")
+        else:
+            input_file = sys.argv[1]
+            main(input_file)
+
